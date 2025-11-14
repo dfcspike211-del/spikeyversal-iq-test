@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SPIKEYVERSAL IQ Test</title>
+<style>
+  :root {
+    --bg: #050816;
+    --card-bg: #ffffff;
+    --accent: #ff6b35;
+    --accent-2: #6366f1;
+    --accent-soft: #ffe3d6;
+    --text-main: #111827;
+    --text-muted: #6b7280;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #02030a 100%);
+    color: #f9fafb;
+  }
+  .page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+  }
+  .card {
+    width: 100%;
+    max-width: 900px;
+    background: var(--card-bg);
+    border-radius: 18px;
+    padding: 24px 26px 26px;
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.55),
+      0 0 0 1px rgba(255, 255, 255, 0.04);
+    color: var(--text-main);
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: conic-gradient(from 210deg, #ff6b35, #ffb703, #6366f1, #ff6b35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #020617;
+    font-size: 18px;
+    box-shadow: 0 0 0 3px #fff, 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+  .brand-text-main {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text-main);
+  }
+  .brand-text-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .pill {
+    font-size: 11px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: #ecfeff;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    border: 1px solid #bae6fd;
+  }
+  h1 {
+    font-size: 24px;
+    margin: 6px 0 6px;
+  }
+  .subtitle {
+    margin: 0 0 12px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .info-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+    font-size: 12px;
+  }
+  .info-chip {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: #111827;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .info-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #6366f1;
+  }
+  .info-dot.orange { background: #f97316; }
+  .info-dot.green { background: #22c55e; }
+
+  #start-screen ul {
+    margin: 6px 0 14px;
+    padding-left: 18px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .timer-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #0f172a;
+    color: #e5e7eb;
+    margin-bottom: 14px;
+  }
+  .timer-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: #9ca3af;
+  }
+  .timer-value {
+    font-family: ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .progress-text {
+    font-size: 13px;
+    color: #e5e7eb;
+  }
+
+  .question {
+    margin-bottom: 14px;
+    padding: 10px 11px 8px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+  }
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: baseline;
+  }
+  .question-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: #0f172a;
+  }
+  .difficulty-tag {
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    border: 1px solid #cbd5f5;
+    background: #e0e7ff;
+    color: #4338ca;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .difficulty-tag.medium {
+    background: #fef3c7;
+    border-color: #fde68a;
+    color: #92400e;
+  }
+  .difficulty-tag.hard {
+    background: #fee2e2;
+    border-color: #fecaca;
+    color: #b91c1c;
+  }
+  .question-extra {
+    font-size: 13px;
+    color: #64748a;
+    margin-bottom: 6px;
+  }
+  .options label {
+    display: block;
+    padding: 5px 6px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #0f172a;
+    cursor: pointer;
+    transition: background 0.14s ease, transform 0.06s ease;
+  }
+  .options label:hover {
+    background: #e2e8ff;
+    transform: translateY(-1px);
+  }
+  .options input {
+    margin-right: 6px;
+  }
+
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--accent), #ffb703);
+    color: #020617;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
+  }
+  button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.32);
+  }
+  button:active {
+    transform: translateY(1px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+  }
+  button[disabled] {
+    opacity: 0.55;
+    cursor: default;
+    transform: none;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.24);
+  }
+
+  #results {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    color: #7c2d12;
+    font-size: 15px;
+    font-weight: 600;
+    display: none;
+  }
+  #results span {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .tiny {
+    font-size: 11px;
+    color: #6b7280;
+  }
+  .hidden {
+    display: none;
+  }
+  @media (max-width: 640px) {
+    .card { padding: 18px 15px 20px; }
+    h1 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="card">
+
+    <div class="header">
+      <div class="brand">
+        <div class="brand-logo">IQ</div>
+        <div>
+          <div class="brand-text-main">SPIKEYVERSAL IQ Test</div>
+          <div class="brand-text-sub">50 questions • approx. 25 minutes</div>
+        </div>
+      </div>
+      <div class="pill">Free • Instant score • No paywall</div>
+    </div>
+
+    <div id="start-screen">
+      <h1>Welcome to the SPIKEYVERSAL IQ-style Test</h1>
+      <p class="subtitle">
+        50 mixed questions (logic, numbers, words, patterns). You have <b>25 minutes</b>.
+        This is an unofficial online IQ-style test for fun and self-assessment.
+      </p>
+
+      <div class="info-strip">
+        <div class="info-chip">
+          <span class="info-dot"></span> 50 questions • weighted difficulty
+        </div>
+        <div class="info-chip">
+          <span class="info-dot.orange"></span> 25 minute time limit
+        </div>
+        <div class="info-chip">
+          <span class="info-dot.green"></span> Raw score • IQ estimate • Percentile
+        </div>
+      </div>
+
+      <ul>
+        <li>Find a quiet place and close other distractions.</li>
+        <li>Answer every question. If you’re unsure, make your best guess.</li>
+        <li>The later questions are generally harder and count slightly more.</li>
+        <li>When the time is up, the test will auto-submit.</li>
+      </ul>
+
+      <button type="button" onclick="startTest()">Start test</button>
+      <p class="tiny" style="margin-top:8px;">
+        This test does not store or send any data. Everything runs locally in your browser.
+      </p>
+    </div>
+
+    <div id="test-screen" class="hidden">
+      <div class="timer-bar">
+        <div>
+          <div class="timer-label">Time remaining</div>
+          <div class="timer-value" id="timer">25:00</div>
+        </div>
+        <div class="progress-text" id="progress-text">Questions answered: 0 / 50</div>
+      </div>
+
+      <form id="iqForm">
+        <div id="questions-container"></div>
+
+        <div class="footer">
+          <div class="tiny">
+            You can submit early if you finish before the timer runs out.
+          </div>
+          <button type="button" id="submit-btn" onclick="calculateIQ(false)">Submit answers</button>
+        </div>
+      </form>
+
+      <div id="results"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ---------------------------
+// Question bank (50 items)
+// ---------------------------
+const questions = [
+  // Easy
+  { id: 1, difficulty: "easy",
+    text: "What number completes the sequence?",
+    extra: "2, 4, 6, 8, ___",
+    options: [
+      { value: "10", label: "10" },
+      { value: "9", label: "9" },
+      { value: "12", label: "12" },
+      { value: "11", label: "11" }
+    ],
+    correct: "10", weight: 1.0
+  },
+  { id: 2, difficulty: "easy",
+    text: "Which word is the odd one out?",
+    extra: "Apple, Banana, Carrot, Grape",
+    options: [
+      { value: "Apple", label: "Apple" },
+      { value: "Banana", label: "Banana" },
+      { value: "Carrot", label: "Carrot" },
+      { value: "Grape", label: "Grape" }
+    ],
+    correct: "Carrot", weight: 1.0
+  },
+  { id: 3, difficulty: "easy",
+    text: "Dog is to Puppy as Cat is to ___",
+    extra: "",
+    options: [
+      { value: "Kitten", label: "Kitten" },
+      { value: "Cub", label: "Cub" },
+      { value: "Foal", label: "Foal" },
+      { value: "Calf", label: "Calf" }
+    ],
+    correct: "Kitten", weight: 1.0
+  },
+  { id: 4, difficulty: "easy",
+    text: "Solve:",
+    extra: "7 + 5 × 2",
+    options: [
+      { value: "17", label: "17" },
+      { value: "24", label: "24" },
+      { value: "19", label: "19" },
+      { value: "22", label: "22" }
+    ],
+    correct: "17", weight: 1.0
+  },
+  { id: 5, difficulty: "easy",
+    text: "If Tom is older than Jim, and Jim is older than Sam, who is the youngest?",
+    extra: "",
+    options: [
+      { value: "Tom", label: "Tom" },
+      { value: "Jim", label: "Jim" },
+      { value: "Sam", label: "Sam" },
+      { value: "CannotTell", label: "Cannot be determined" }
+    ],
+    correct: "Sam", weight: 1.0
+  },
+  { id: 6, difficulty: "easy",
+    text: "Which shape comes next?",
+    extra: "▲ ▼ ▲ ▼ ___",
+    options: [
+      { value: "Up", label: "▲" },
+      { value: "Down", label: "▼" },
+      { value: "Circle", label: "●" },
+      { value: "Square", label: "■" }
+    ],
+    correct: "Up", weight: 1.0
+  },
+  { id: 7, difficulty: "easy",
+    text: "What number completes the sequence?",
+    extra: "3, 9, 27, 81, ___",
+    options: [
+      { value: "243", label: "243" },
+      { value: "162", label: "162" },
+      { value: "324", label: "324" },
+      { value: "300", label: "300" }
+    ],
+    correct: "243", weight: 1.0
+  },
+  { id: 8, difficulty: "easy",
+    text: "Which is the odd one out?",
+    extra: "Square, Triangle, Circle, Cube",
+    options: [
+      { value: "Square", label: "Square" },
+      { value: "Triangle", label: "Triangle" },
+      { value: "Circle", label: "Circle" },
+      { value: "Cube", label: "Cube" }
+    ],
+    correct: "Cube", weight: 1.0
+  },
+  { id: 9, difficulty: "easy",
+    text: "Bird is to Wing as Fish is to ___",
+    extra: "",
+    options: [
+      { value: "Fin", label: "Fin" },
+      { value: "Scale", label: "Scale" },
+      { value: "Tail", label: "Tail" },
+      { value: "Eye", label: "Eye" }
+    ],
+    correct: "Fin", weight: 1.0
+  },
+  { id: 10, difficulty: "easy",
+    text: "Solve:",
+    extra: "45 ÷ 5 + 3",
+    options: [
+      { value: "12", label: "12" },
+      { value: "15", label: "15" },
+      { value: "9", label: "9" },
+      { value: "18", label: "18" }
+    ],
+    correct: "12", weight: 1.0
+  },
+  { id: 11, difficulty: "easy",
+    text: "All Bloops are Kazzes. No Kazz is green. Can any Bloop be green?",
+    extra: "",
+    options: [
+      { value: "Yes", label: "Yes" },
+      { value: "No", label: "No" },
+      { value: "Unknown", label: "Cannot be determined" },
+      { value: "Sometimes", label: "Only sometimes" }
+    ],
+    correct: "No", weight: 1.0
+  },
+  { id: 12, difficulty: "easy",
+    text: "What number completes the sequence?",
+    extra: "1, 1, 2, 3, 5, 8, ___",
+    options: [
+      { value: "13", label: "13" },
+      { value: "11", label: "11" },
+      { value: "10", label: "10" },
+      { value: "15", label: "15" }
+    ],
+    correct: "13", weight: 1.0
+  },
+  { id: 13, difficulty: "easy",
+    text: "Which word is the odd one out?",
+    extra: "Monday, Tuesday, April, Wednesday",
+    options: [
+      { value: "Monday", label: "Monday" },
+      { value: "Tuesday", label: "Tuesday" },
+      { value: "April", label: "April" },
+      { value: "Wednesday", label: "Wednesday" }
+    ],
+    correct: "April", weight: 1.0
+  },
+  { id: 14, difficulty: "easy",
+    text: "Finger is to Hand as Toe is to ___",
+    extra: "",
+    options: [
+      { value: "Foot", label: "Foot" },
+      { value: "Leg", label: "Leg" },
+      { value: "Arm", label: "Arm" },
+      { value: "Head", label: "Head" }
+    ],
+    correct: "Foot", weight: 1.0
+  },
+  { id: 15, difficulty: "easy",
+    text: "Solve:",
+    extra: "(15 ÷ 3) + 2 × 4",
+    options: [
+      { value: "13", label: "13" },
+      { value: "11", label: "11" },
+      { value: "19", label: "19" },
+      { value: "8", label: "8" }
+    ],
+    correct: "13", weight: 1.0
+  },
+  { id: 16, difficulty: "easy",
+    text: "Which pattern comes next?",
+    extra: "■, ■●, ■●●, ■●●●, ___",
+    options: [
+      { value: "one", label: "■●" },
+      { value: "two", label: "■●●" },
+      { value: "three", label: "■●●●" },
+      { value: "four", label: "■●●●●" }
+    ],
+    correct: "four", weight: 1.0
+  },
+  { id: 17, difficulty: "easy",
+    text: "What number completes the sequence?",
+    extra: "10, 13, 17, 22, 28, ___",
+    options: [
+      { value: "35", label: "35" },
+      { value: "34", label: "34" },
+      { value: "36", label: "36" },
+      { value: "33", label: "33" }
+    ],
+    correct: "35", weight: 1.0
+  },
+  { id: 18, difficulty: "easy",
+    text: "Sarah is taller than Peter. John is shorter than Sarah but taller than Peter. Who is in the middle by height?",
+    extra: "",
+    options: [
+      { value: "Sarah", label: "Sarah" },
+      { value: "Peter", label: "Peter" },
+      { value: "John", label: "John" },
+      { value: "CannotTell", label: "Cannot be determined" }
+    ],
+    correct: "John", weight: 1.0
+  },
+  { id: 19, difficulty: "easy",
+    text: "Cold is to Hot as Small is to ___",
+    extra: "",
+    options: [
+      { value: "Large", label: "Large" },
+      { value: "Short", label: "Short" },
+      { value: "Tiny", label: "Tiny" },
+      { value: "Weak", label: "Weak" }
+    ],
+    correct: "Large", weight: 1.0
+  },
+  { id: 20, difficulty: "easy",
+    text: "Which is the odd one out?",
+    extra: "Triangle, Square, Pentagon, January",
+    options: [
+      { value: "Triangle", label: "Triangle" },
+      { value: "Square", label: "Square" },
+      { value: "Pentagon", label: "Pentagon" },
+      { value: "January", label: "January" }
+    ],
+    correct: "January", weight: 1.0
+  },
+
+  // Medium
+  { id: 21, difficulty: "medium",
+    text: "What number completes the sequence?",
+    extra: "4, 9, 16, 25, ___",
+    options: [
+      { value: "36", label: "36" },
+      { value: "30", label: "30" },
+      { value: "32", label: "32" },
+      { value: "40", label: "40" }
+    ],
+    correct: "36", weight: 1.3
+  },
+  { id: 22, difficulty: "medium",
+    text: "Solve:",
+    extra: "8 × (5 + 2) − 6",
+    options: [
+      { value: "50", label: "50" },
+      { value: "56", label: "56" },
+      { value: "42", label: "42" },
+      { value: "58", label: "58" }
+    ],
+    correct: "50", weight: 1.3
+  },
+  { id: 23, difficulty: "medium",
+    text: "All artists are imaginative. Some imaginative people are messy. Which statement is definitely true?",
+    extra: "",
+    options: [
+      { value: "A", label: "Some artists may be messy." },
+      { value: "B", label: "No artist is messy." },
+      { value: "C", label: "All messy people are artists." },
+      { value: "D", label: "No imaginative people are artists." }
+    ],
+    correct: "A", weight: 1.3
+  },
+  { id: 24, difficulty: "medium",
+    text: "Book is to Read as Knife is to ___",
+    extra: "",
+    options: [
+      { value: "Cut", label: "Cut" },
+      { value: "Write", label: "Write" },
+      { value: "Listen", label: "Listen" },
+      { value: "Paint", label: "Paint" }
+    ],
+    correct: "Cut", weight: 1.3
+  },
+  { id: 25, difficulty: "medium",
+    text: "Which is the odd one out?",
+    extra: "Paris, London, Rome, Nile",
+    options: [
+      { value: "Paris", label: "Paris" },
+      { value: "London", label: "London" },
+      { value: "Rome", label: "Rome" },
+      { value: "Nile", label: "Nile" }
+    ],
+    correct: "Nile", weight: 1.3
+  },
+  { id: 26, difficulty: "medium",
+    text: "What number completes the sequence?",
+    extra: "2, 5, 11, 23, 47, ___",
+    options: [
+      { value: "95", label: "95" },
+      { value: "92", label: "92" },
+      { value: "99", label: "99" },
+      { value: "100", label: "100" }
+    ],
+    correct: "95", weight: 1.3
+  },
+  { id: 27, difficulty: "medium",
+    text: "Which pattern comes next?",
+    extra: "●▲, ●▲▲, ●▲▲▲, ___",
+    options: [
+      { value: "one", label: "●▲" },
+      { value: "two", label: "●▲▲" },
+      { value: "three", label: "●▲▲▲" },
+      { value: "four", label: "●▲▲▲▲" }
+    ],
+    correct: "four", weight: 1.3
+  },
+  { id: 28, difficulty: "medium",
+    text: "A number is divisible by 2 and by 3. Which statement must be true?",
+    extra: "",
+    options: [
+      { value: "Div4", label: "It is divisible by 4." },
+      { value: "Div5", label: "It is divisible by 5." },
+      { value: "Div6", label: "It is divisible by 6." },
+      { value: "Div9", label: "It is divisible by 9." }
+    ],
+    correct: "Div6", weight: 1.3
+  },
+  { id: 29, difficulty: "medium",
+    text: "Teach is to Taught as Catch is to ___",
+    extra: "",
+    options: [
+      { value: "Caught", label: "Caught" },
+      { value: "Catched", label: "Catched" },
+      { value: "Catchen", label: "Catchen" },
+      { value: "Catching", label: "Catching" }
+    ],
+    correct: "Caught", weight: 1.3
+  },
+  { id: 30, difficulty: "medium",
+    text: "Solve:",
+    extra: "(7 × 7) − (6 × 4)",
+    options: [
+      { value: "25", label: "25" },
+      { value: "13", label: "13" },
+      { value: "31", label: "31" },
+      { value: "49", label: "49" }
+    ],
+    correct: "25", weight: 1.3
+  },
+
+  // Hard
+  { id: 31, difficulty: "hard",
+    text: "What number completes the sequence?",
+    extra: "7, 10, 16, 25, 37, ___",
+    options: [
+      { value: "52", label: "52" },
+      { value: "49", label: "49" },
+      { value: "54", label: "54" },
+      { value: "50", label: "50" }
+    ],
+    correct: "52", weight: 1.6
+  },
+  { id: 32, difficulty: "hard",
+    text: "Which is the odd one out?",
+    extra: "Oxygen, Hydrogen, Silver, Carbon",
+    options: [
+      { value: "Oxygen", label: "Oxygen" },
+      { value: "Hydrogen", label: "Hydrogen" },
+      { value: "Silver", label: "Silver" },
+      { value: "Carbon", label: "Carbon" }
+    ],
+    correct: "Silver", weight: 1.6
+  },
+  { id: 33, difficulty: "hard",
+    text: "No Tigers are friendly. Some Pets are Tigers. What follows?",
+    extra: "",
+    options: [
+      { value: "A", label: "Some Pets are not friendly." },
+      { value: "B", label: "All Pets are friendly." },
+      { value: "C", label: "No Pets are Tigers." },
+      { value: "D", label: "Some Tigers are friendly." }
+    ],
+    correct: "A", weight: 1.6
+  },
+  { id: 34, difficulty: "hard",
+    text: "Word is to Sentence as Note is to ___",
+    extra: "",
+    options: [
+      { value: "Melody", label: "Melody" },
+      { value: "Book", label: "Book" },
+      { value: "Letter", label: "Letter" },
+      { value: "Page", label: "Page" }
+    ],
+    correct: "Melody", weight: 1.6
+  },
+  { id: 35, difficulty: "hard",
+    text: "Solve:",
+    extra: "120 ÷ (3 × 4) + 7",
+    options: [
+      { value: "17", label: "17" },
+      { value: "12", label: "12" },
+      { value: "10", label: "10" },
+      { value: "22", label: "22" }
+    ],
+    correct: "17", weight: 1.6
+  },
+  { id: 36, difficulty: "hard",
+    text: "What number completes the sequence?",
+    extra: "2, 3, 5, 7, 11, 13, ___",
+    options: [
+      { value: "17", label: "17" },
+      { value: "15", label: "15" },
+      { value: "19", label: "19" },
+      { value: "21", label: "21" }
+    ],
+    correct: "17", weight: 1.6
+  },
+  { id: 37, difficulty: "hard",
+    text: "Which arrow comes next?",
+    extra: "→, ↑, ←, ↓, →, ↑, ___",
+    options: [
+      { value: "Left", label: "←" },
+      { value: "Right", label: "→" },
+      { value: "Up", label: "↑" },
+      { value: "Down", label: "↓" }
+    ],
+    correct: "Left", weight: 1.6
+  },
+  { id: 38, difficulty: "hard",
+    text: "In a code: A = 1, C = 3, F = 6, J = 10. What is M equal to?",
+    extra: "",
+    options: [
+      { value: "13", label: "13" },
+      { value: "14", label: "14" },
+      { value: "15", label: "15" },
+      { value: "16", label: "16" }
+    ],
+    correct: "15", weight: 1.6
+  },
+  { id: 39, difficulty: "hard",
+    text: "Marathon is to Race as Sonata is to ___",
+    extra: "",
+    options: [
+      { value: "Music", label: "Music" },
+      { value: "Instrument", label: "Instrument" },
+      { value: "Stage", label: "Stage" },
+      { value: "Composer", label: "Composer" }
+    ],
+    correct: "Music", weight: 1.6
+  },
+  { id: 40, difficulty: "hard",
+    text: "Solve:",
+    extra: "3⁄5 of 40 plus 12",
+    options: [
+      { value: "36", label: "36" },
+      { value: "30", label: "30" },
+      { value: "24", label: "24" },
+      { value: "40", label: "40" }
+    ],
+    correct: "36", weight: 1.6
+  },
+  { id: 41, difficulty: "hard",
+    text: "If the first two statements are true, is the third true, false, or uncertain?",
+    extra: "1) All squares are rectangles.  2) All rectangles have four sides.  3) All shapes with four sides are squares.",
+    options: [
+      { value: "True", label: "True" },
+      { value: "False", label: "False" },
+      { value: "Uncertain", label: "Cannot be determined" },
+      { value: "Sometimes", label: "True only sometimes" }
+    ],
+    correct: "False", weight: 1.6
+  },
+  { id: 42, difficulty: "hard",
+    text: "What number completes the sequence?",
+    extra: "19, 16, 12, 7, 1, ___",
+    options: [
+      { value: "-6", label: "-6" },
+      { value: "-2", label: "-2" },
+      { value: "0", label: "0" },
+      { value: "2", label: "2" }
+    ],
+    correct: "-6", weight: 1.6
+  },
+  { id: 43, difficulty: "hard",
+    text: "Which is the odd one out?",
+    extra: "Violin, Flute, Trumpet, Hammer",
+    options: [
+      { value: "Violin", label: "Violin" },
+      { value: "Flute", label: "Flute" },
+      { value: "Trumpet", label: "Trumpet" },
+      { value: "Hammer", label: "Hammer" }
+    ],
+    correct: "Hammer", weight: 1.6
+  },
+  { id: 44, difficulty: "hard",
+    text: "Eye is to See as Ear is to ___",
+    extra: "",
+    options: [
+      { value: "Hear", label: "Hear" },
+      { value: "Smell", label: "Smell" },
+      { value: "Touch", label: "Touch" },
+      { value: "Taste", label: "Taste" }
+    ],
+    correct: "Hear", weight: 1.6
+  },
+  { id: 45, difficulty: "hard",
+    text: "Solve:",
+    extra: "2³ × 3²",
+    options: [
+      { value: "72", label: "72" },
+      { value: "36", label: "36" },
+      { value: "54", label: "54" },
+      { value: "64", label: "64" }
+    ],
+    correct: "72", weight: 1.6
+  },
+  { id: 46, difficulty: "hard",
+    text: "What letter comes next?",
+    extra: "A, C, F, J, O, ___",
+    options: [
+      { value: "T", label: "T" },
+      { value: "U", label: "U" },
+      { value: "V", label: "V" },
+      { value: "X", label: "X" }
+    ],
+    correct: "U", weight: 1.6
+  },
+  { id: 47, difficulty: "hard",
+    text: "A shop sells pens for £1.20 each, or 3 for £3.00. Which option is cheaper per pen?",
+    extra: "",
+    options: [
+      { value: "Single", label: "Buying single pens" },
+      { value: "Bundle", label: "Buying 3 for £3.00" },
+      { value: "Same", label: "They cost the same" },
+      { value: "CannotTell", label: "Cannot be determined" }
+    ],
+    correct: "Bundle", weight: 1.6
+  },
+  { id: 48, difficulty: "hard",
+    text: "What number completes the sequence?",
+    extra: "9, 27, 81, 243, ___",
+    options: [
+      { value: "729", label: "729" },
+      { value: "486", label: "486" },
+      { value: "324", label: "324" },
+      { value: "999", label: "999" }
+    ],
+    correct: "729", weight: 1.6
+  },
+  { id: 49, difficulty: "hard",
+    text: "North is to South as East is to ___",
+    extra: "",
+    options: [
+      { value: "West", label: "West" },
+      { value: "North", label: "North" },
+      { value: "South", label: "South" },
+      { value: "Up", label: "Up" }
+    ],
+    correct: "West", weight: 1.6
+  },
+  { id: 50, difficulty: "hard",
+    text: "Solve:",
+    extra: "(5⁄8 of 64) − (3⁄4 of 32)",
+    options: [
+      { value: "16", label: "16" },
+      { value: "12", label: "12" },
+      { value: "8", label: "8" },
+      { value: "20", label: "20" }
+    ],
+    correct: "16", weight: 1.6
+  }
+];
+
+// ---------------------------
+// Rendering with randomised options
+// ---------------------------
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+function renderQuestions() {
+  const container = document.getElementById("questions-container");
+  container.innerHTML = "";
+  questions.forEach(q => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "question";
+
+    const header = document.createElement("div");
+    header.className = "question-header";
+
+    const title = document.createElement("div");
+    title.className = "question-title";
+    title.textContent = q.id + ". " + q.text;
+
+    const diff = document.createElement("div");
+    diff.className = "difficulty-tag " +
+      (q.difficulty === "medium" ? "medium" : (q.difficulty === "hard" ? "hard" : ""));
+    diff.textContent = q.difficulty;
+
+    header.appendChild(title);
+    header.appendChild(diff);
+    wrapper.appendChild(header);
+
+    if (q.extra && q.extra.trim() !== "") {
+      const extra = document.createElement("div");
+      extra.className = "question-extra";
+      extra.textContent = q.extra;
+      wrapper.appendChild(extra);
+    }
+
+    const optionsDiv = document.createElement("div");
+    optionsDiv.className = "options";
+
+    const shuffledOptions = [...q.options];
+    shuffle(shuffledOptions);
+
+    shuffledOptions.forEach(opt => {
+      const label = document.createElement("label");
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = "q" + q.id;
+      input.value = opt.value;
+      input.addEventListener("change", updateProgress);
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(opt.label));
+      optionsDiv.appendChild(label);
+    });
+
+    wrapper.appendChild(optionsDiv);
+    container.appendChild(wrapper);
+  });
+}
+
+// ---------------------------
+// Timer
+// ---------------------------
+let remainingSeconds = 25 * 60; // 25 minutes
+let timerId = null;
+let testFinished = false;
+
+function startTest() {
+  document.getElementById("start-screen").classList.add("hidden");
+  document.getElementById("test-screen").classList.remove("hidden");
+  renderQuestions();
+  updateTimerDisplay();
+  timerId = setInterval(tick, 1000);
+}
+
+function tick() {
+  if (testFinished) {
+    clearInterval(timerId);
+    return;
+  }
+  remainingSeconds--;
+  if (remainingSeconds <= 0) {
+    remainingSeconds = 0;
+    updateTimerDisplay();
+    clearInterval(timerId);
+    calculateIQ(true); // auto-submit
+  } else {
+    updateTimerDisplay();
+  }
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(remainingSeconds / 60);
+  const s = remainingSeconds % 60;
+  const timer = document.getElementById("timer");
+  timer.textContent = m.toString().padStart(2, "0") + ":" + s.toString().padStart(2, "0");
+}
+
+function updateProgress() {
+  let answered = 0;
+  questions.forEach(q => {
+    const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+    if (selected) answered++;
+  });
+  document.getElementById("progress-text").textContent =
+    "Questions answered: " + answered + " / " + questions.length;
+}
+
+// ---------------------------
+// Scoring & IQ estimation
+// ---------------------------
+function erf(x) {
+  const sign = (x >= 0) ? 1 : -1;
+  x = Math.abs(x);
+  const a1 = 0.254829592;
+  const a2 = -0.284496736;
+  const a3 = 1.421413741;
+  const a4 = -1.453152027;
+  const a5 = 1.061405429;
+  const p = 0.3275911;
+
+  const t = 1 / (1 + p * x);
+  const y = 1 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+  return sign * y;
+}
+
+function normalCdf(z) {
+  return 0.5 * (1 + erf(z / Math.sqrt(2)));
+}
+
+function calculateIQ(autoSubmitted) {
+  if (testFinished) return;
+  testFinished = true;
+  if (timerId) clearInterval(timerId);
+
+  let correctCount = 0;
+  let weightedScore = 0;
+  let unanswered = 0;
+
+  questions.forEach(q => {
+    const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+    if (!selected) {
+      unanswered++;
+      return;
+    }
+    if (selected.value === q.correct) {
+      correctCount++;
+      weightedScore += q.weight;
+    }
+  });
+
+  const effectiveScore = weightedScore;
+
+  const meanEff = 30;
+  const sdEff = 14;
+
+  let z = (effectiveScore - meanEff) / sdEff;
+  let iq = 100 + 15 * z;
+
+  let iqRounded = Math.round(iq);
+
+  let ceiling = false;
+  if (correctCount >= 49) {
+    iqRounded = 135;
+    ceiling = true;
+  }
+
+  if (iqRounded < 60) iqRounded = 60;
+
+  let percentile = Math.round(normalCdf(z) * 100);
+  if (percentile < 1) percentile = 1;
+  if (percentile > 99) percentile = 99;
+
+  const inputs = document.querySelectorAll("#iqForm input");
+  inputs.forEach(inp => inp.disabled = true);
+  const submitBtn = document.getElementById("submit-btn");
+  submitBtn.disabled = true;
+
+  const results = document.getElementById("results");
+  results.style.display = "block";
+
+  let summary = "";
+  summary += "<span>Raw score: " + correctCount + " / " + questions.length + "</span>";
+
+  if (ceiling) {
+    summary += "<span>Estimated IQ: " + iqRounded + "+</span>";
+    summary += "<span class='tiny'>You reached the ceiling of this online test. "
+            + "Your ability falls in the very high range (approximately 135+). "
+            + "This test cannot reliably distinguish between 135 and 150+.</span>";
+    summary += "<span>Approximate percentile: about the top 1% of the general population.</span>";
+  } else {
+    summary += "<span>Estimated IQ: " + iqRounded + "</span>";
+    const top = 100 - percentile;
+    summary += "<span>Approximate percentile: about the "
+             + percentile + "th percentile (roughly top "
+             + (top <= 0 ? "50" : top) + "%).</span>";
+  }
+
+  if (unanswered > 0) {
+    summary += "<span class='tiny'>You left " + unanswered +
+               " question" + (unanswered === 1 ? "" : "s") +
+               " unanswered. Guessing is usually better than skipping.</span>";
+  }
+
+  summary += "<span class='tiny'>This is an unofficial online IQ-style test. "
+           + "Scores are approximate and for personal interest only, "
+           + "not a clinical or professionally administered IQ measurement.</span>";
+
+  if (autoSubmitted) {
+    summary += "<span class='tiny'>The test was submitted automatically when the 25-minute timer expired.</span>";
+  }
+
+  results.innerHTML = summary;
+}
+</script>
+
+</body>
+</html>
